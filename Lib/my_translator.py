@@ -4,6 +4,9 @@ import json
 import requests
 
 def create_query_map():
+    '''
+    method to test library loaded correctly
+    '''
     print("test map")
 
 
@@ -27,6 +30,7 @@ def query_map(source_type, source_id, target_type, relationship):
 def query_map_df(source_type, source_id, target_type, relationship, rest_url):
     '''
     calls the url and returns a pandas dataframe
+    adds extra columns to the results DF indicating source/target types
     '''
 
     # get the query map
