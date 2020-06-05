@@ -46,7 +46,25 @@ def query_map_df(source_type, source_id, target_type, relationship, rest_url):
     result_df['source_type'] = source_type
     result_df['target_type'] = target_type
 
+    # log results count
+    print("got {} row dataframe".format(result_df.shape[0]))
+
     # return
     return result_df
+
+def query_map_json(source_type, source_id, target_type, relationship, rest_url):
+    '''
+    calls the url and returns a pandas dataframe
+    adds extra columns to the results DF indicating source/target types
+    '''
+
+    # get the query map
+    query_map_result = query_map(source_type, source_id, target_type, relationship)
+
+    # make the REST call
+    response = requests.post(rest_url, json=query_map_result).json()
+
+    # return
+    return response
 
 
