@@ -33,11 +33,8 @@ def query_map_df(source_type, source_id, target_type, relationship, rest_url):
     adds extra columns to the results DF indicating source/target types
     '''
 
-    # get the query map
-    query_map_result = query_map(source_type, source_id, target_type, relationship)
-
-    # make the REST call
-    response = requests.post(rest_url, json=query_map_result).json()
+    # make the REST call and get the json
+    response = query_map_json(source_type, source_id, target_type, relationship, rest_url)
 
     # convert to a pandas dataframe
     result_df = pd.DataFrame(response.get('knowledge_graph').get('edges'))
@@ -54,8 +51,7 @@ def query_map_df(source_type, source_id, target_type, relationship, rest_url):
 
 def query_map_json(source_type, source_id, target_type, relationship, rest_url):
     '''
-    calls the url and returns a pandas dataframe
-    adds extra columns to the results DF indicating source/target types
+    calls the url and returns the json result
     '''
 
     # get the query map
